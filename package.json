@@ -1,0 +1,22 @@
+{
+  "name": "joystick",
+  "version": "1.0.0",
+  "description": "Configurable javascript based joystick",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusdeboer/joystick.git"
+  },
+  "keywords": [
+    "joystick"
+  ],
+  "author": "Gus de Boer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gusdeboer/joystick/issues"
+  },
+  "homepage": "https://github.com/gusdeboer/joystick#readme"
+}

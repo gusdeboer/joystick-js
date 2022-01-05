@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+        .joystick {
+            height: 200px;
+            width: 200px;
+            display: block;
+            background: silver;
+            margin: 50px 100px;
+            position: relative;
+            border-radius: 100%;
+            display: inline-block;
+        }
+        
+        .joystick span {
+            position: absolute;
+            height: 30%;
+            width: 30%;
+            background: black;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+            pointer-events: none !important;
+        }
+        
+        .joystick input {
+            margin-left: 200px;
+            pointer-events: none;
+        }
+        
+        .debug {
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="joystick"></div>
+    <div class="debug"></div>
+</body>
+
+<script type="module">
+    import joystick from '../index.js'; joystick(".joystick");
+</script>
+
+<script>
+    document.querySelector(".joystick").addEventListener("change", function(e) {
+        document.querySelector(".debug").innerHTML = JSON.stringify(e.detail);
+    });
+    // Prevent scrolling
+    document.body.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, false);
+</script>
+
+</html>
