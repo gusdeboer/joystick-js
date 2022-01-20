@@ -34,8 +34,8 @@ joystick("#joystick");
     <div class="code">
         <pre>
 joystick("#joystick", { 
-    min: 0,     // Override default min value
-    max: 100,   // Override default max value
+    min: 0,     // Override default min value, applies to both x and y
+    max: 100,   // Override default max value, applies to both x and y
     minY: -50,  // Specific Y axis min value
     maxY: 50,   // Specific Y axis max value
     minX: -50,  // Specific X axis min value
@@ -88,9 +88,8 @@ joystick("#joystick", {
 .joystick {
     height: 200px;
     width: 200px;
-    display: block;
+    display: inline-block;
     border: 3px solid white;
-    margin: 50px 100px;
     position: relative;
     border-radius: 100%;
     display: inline-block;

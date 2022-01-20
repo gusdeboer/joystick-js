@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        .joystick-1 {
+            height: 200px;
+            width: 200px;
+            display: inline-block;
+            border: 3px solid white;
+            margin: 50px 100px;
+            position: relative;
+            border-radius: 100%;
+        }
+        
+        .joystick-1:before {
+            content: "";
+            position: absolute;
+            height: 90%;
+            width: 90%;
+            border: 1px dashed white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+        }
+        
+        .joystick-1:after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 3px;
+            background: white;
+            margin-top: 3px;
+            transform: rotate(90deg);
+        }
+        
+        .joystick-1 span {
+            position: absolute;
+            height: 30%;
+            width: 30%;
+            background: white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+            pointer-events: none !important;
+        }
+        
+        .joystick-2 {
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            border: 3px dashed white;
+            margin: 50px 100px;
+            position: relative;
+        }
+        
+        .joystick-2 span {
+            position: absolute;
+            height: 40%;
+            width: 40%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+            pointer-events: none !important;
+            background-image: url('http://assets.stickpng.com/thumbs/5a5a8d8d14d8c4188e0b08ef.png');
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="joystick-1" id="joystick1"></div>
+    </div>
+
+    <h2>styling</h2>
+
+    <p>Styling the joystick can be done through standard CSS. There are two classes, <span class="code">.joystick</span> and <span class="code">.stick</span>.</p>
+    <p>The following CSS is applied on the example above.</p>
+    <div class="code">
+        <pre>
+.joystick-1 {
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+    border: 3px solid white;
+    margin: 50px 100px;
+    position: relative;
+    border-radius: 100%;
+}
+
+.joystick-1:before {
+    content: "";
+    position: absolute;
+    height: 90%;
+    width: 90%;
+    border: 1px dashed white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+}
+
+.joystick-1:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    background: white;
+    margin-top: 3px;
+    transform: rotate(90deg);
+}
+
+.joystick-1 span {
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    background: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    pointer-events: none !important;
+}
+</pre>
+    </div>
+
+    <div class="container">
+        <div class="joystick-2" id="joystick2"></div>
+    </div>
+
+    <h2>Square</h2>
+
+    <!-- MIN / MAX -->
+    <p>There is no rule for a joystick to be round. The shape of the joystick does not infect the values in any way.</p>
+    <div class="code">
+        <pre>
+.joystick-2 {
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    border: 3px dashed white;
+    margin: 50px 100px;
+    position: relative;
+}
+
+.joystick-2 span {
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    pointer-events: none !important;
+    background-image: url(insert-cat-image);
+    background-size: cover;
+}
+</pre>
+    </div>
+
+    <footer>Built by Gus | <a href="https://github.com/gusdeboer/joystick" target="_blank">Github</a></footer>
+</body>
+
+<script type="module">
+    import joystick from '../index.js'; joystick("#joystick1"); joystick("#joystick2", {snapBack: false});
+</script>
+
+</html>

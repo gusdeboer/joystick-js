@@ -108,8 +108,6 @@ export default function joystick(el, options = {}) {
         // Stop dragging
         dragging = false;
 
-        console.log(snapBack)
-
         if (!snapBack) {
             return;
         }
