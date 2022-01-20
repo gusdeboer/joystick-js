@@ -6,7 +6,7 @@ Configurable javascript based joystick used for vitrualy controlling entities fr
 You can find the documentation [here](https://gusdeboer.github.io/joystick-js/docs/)
 
 ## Install
-```npm install joystick-js```
+```npm install @gusdeboer/joystick-js```
 
 ## Basic usage
 ``` 
