@@ -90,6 +90,17 @@ div.code {
     text-align: left;
 }
 
+ul {
+    padding: 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
 footer {
     text-align: center;
     font-size: 13px;
