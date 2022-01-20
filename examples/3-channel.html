@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="joystick" id="joystick1"></div>
+
+        <div class="debug debug1">
+            <p>Left</p>
+            <span>&nbsp;</span>
+            <span class="y">Throttle: 50</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="joystick" id="joystick2"></div>
+
+        <div class="debug debug2">
+            <p>Right</p>
+            <span class="x">Rudder: 50</span>
+            <span class="y">Aileron: 50</span>
+        </div>
+    </div>
+
+    <h2>3 channel flight controller</h2>
+
+    <!-- MIN / MAX -->
+    <p>A three channel flite controller has the ability to set a throttle, elevator and aileron.</p>
+    <p>The snap back on the left throttle stick can be disabled by setting <span class="code">snapBack</span> to false</p>
+    <p>Both sticks can be operated simultaneously for perfect control.</p>
+    <div class="code">
+        <pre>
+import joystick from '../index.js';
+
+joystick("#joystick1", {
+    disableX: true,
+    snapBack: false
+});
+joystick("#joystick2");
+</pre>
+    </div>
+
+    <footer>Built by Gus | <a href="https://github.com/gusdeboer/joystick" target="_blank">Github</a></footer>
+</body>
+
+<script type="module">
+    import joystick from '../index.js'; joystick("#joystick1", { disableX: true, snapBack: false }); joystick("#joystick2");
+</script>
+
+<script>
+    document.querySelector("#joystick1").addEventListener("change", function(e) {
+        document.querySelector(".debug1 .y").innerHTML = `Throttle: ${e.detail.y}`;
+    });
+
+    document.querySelector("#joystick2").addEventListener("change", function(e) {
+        document.querySelector(".debug2 .x").innerHTML = `Rudder: ${e.detail.x}`;
+        document.querySelector(".debug2 .y").innerHTML = `Aileron: ${e.detail.y}`;
+    });
+</script>
+
+</html>

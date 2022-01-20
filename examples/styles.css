@@ -1,0 +1,97 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1,
+h2 {
+    font-weight: lighter;
+    margin-top: 60px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 14px;
+}
+
+p span.code {
+    font-family: monospace;
+    background: rgba(0, 0, 0, .3);
+    padding: 2px;
+}
+
+.container {
+    display: inline-block;
+}
+
+.joystick {
+    height: 200px;
+    width: 200px;
+    display: block;
+    border: 3px solid white;
+    margin: 50px 100px;
+    position: relative;
+    border-radius: 100%;
+    display: inline-block;
+}
+
+.joystick span {
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    background: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    pointer-events: none !important;
+}
+
+.debug {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.debug span {
+    display: block;
+}
+
+pre {
+    font-family: monospace;
+}
+
+div.code {
+    font-family: monospace;
+    margin: 0 auto;
+    display: block;
+    background: rgba(0, 0, 0, .3);
+    padding: 10px 20px;
+    margin-top: 50px;
+    display: block;
+    width: min-content;
+    text-align: left;
+}
+
+footer {
+    text-align: center;
+    font-size: 13px;
+    margin: 40px;
+}

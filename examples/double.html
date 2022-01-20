@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="joystick" id="joystick1"></div>
+
+        <div class="debug debug1">
+            <p>Left</p>
+            <span class="x">X: 50</span>
+            <span class="y">Y: 50</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="joystick" id="joystick2"></div>
+
+        <div class="debug debug2">
+            <p>Right</p>
+            <span class="x">X: 50</span>
+            <span class="y">Y: 50</span>
+        </div>
+    </div>
+
+    <h2>Multiple joysticks</h2>
+
+    <!-- MIN / MAX -->
+    <p>Adding multiple joystick can be as easy as invoking the method twice on different elements on the page.</p>
+    <div class="code">
+        <pre>
+import joystick from '../index.js';
+
+joystick("#joystick1");
+joystick("#joystick2");
+</pre>
+    </div>
+
+    <footer>Built by Gus | <a href="https://github.com/gusdeboer/joystick" target="_blank">Github</a></footer>
+</body>
+
+<script type="module">
+    import joystick from '../index.js'; joystick("#joystick1"); joystick("#joystick2");
+</script>
+
+<script>
+    document.querySelector("#joystick1").addEventListener("change", function(e) {
+        document.querySelector(".debug1 .x").innerHTML = `X: ${e.detail.x}`;
+        document.querySelector(".debug1 .y").innerHTML = `Y: ${e.detail.y}`;
+    });
+
+    document.querySelector("#joystick2").addEventListener("change", function(e) {
+        document.querySelector(".debug2 .x").innerHTML = `X: ${e.detail.x}`;
+        document.querySelector(".debug2 .y").innerHTML = `Y: ${e.detail.y}`;
+    });
+    // Prevent scrolling
+    document.body.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, false);
+</script>
+
+</html>

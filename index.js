@@ -3,14 +3,14 @@ export default function joystick(el, options = {}) {
     const joystick = document.querySelector(el);
     const joystickHeight = joystick.offsetHeight;
     const joystickWidth = joystick.offsetWidth;
-    const resetOnStop = options.resetOnStop || false;
+    const snapBack = options.snapBack === false ? false : true || true;
     const precision = options.precision || false;
+    const round = options.round === false ? false : true || true;
+    const disableX = options.disableX || false;
+    const disableY = options.disableY || false;
 
     // TODO
-    // 1. Multi-touch support
-    // 2. Vertical or horizonal only
-    // 3. Fix rouding, default to 0 decimals
-    // 4. Validate min / max
+    // 1. Validate edges of control suface for touch overflow
 
     let dragging = false;
 
@@ -24,6 +24,15 @@ export default function joystick(el, options = {}) {
         min: options.minY || options.min || 0,
         max: options.maxY || options.max || 100,
         value: 0
+    }
+
+    // Validate min max
+    if (x.min >= x.max || x.max <= x.min) {
+        throw `X-axis values do not match in ${el}`;
+    }
+
+    if (y.min >= y.max || y.max <= y.min) {
+        throw `Y-axis values do not match in ${el}`;
     }
 
     // Create and append stick
@@ -75,8 +84,12 @@ export default function joystick(el, options = {}) {
         }
 
         // Move stick relative to joystick offset and mouse position
-        stick.style.left = offsetX + "px";
-        stick.style.top = offsetY + "px";
+        if (!disableX) {
+            stick.style.left = offsetX + "px";
+        }
+        if (!disableY) {
+            stick.style.top = offsetY + "px";
+        }
 
         // Joystick dimensions
         let yPercentage = (offsetY / joystickHeight) * 100;
@@ -95,9 +108,12 @@ export default function joystick(el, options = {}) {
         // Stop dragging
         dragging = false;
 
-        if (!resetOnStop) {
+        console.log(snapBack)
+
+        if (!snapBack) {
             return;
         }
+
         // Reset range sliders to center position
         x.value = (x.min + x.max) / 2;
         y.value = (y.min + y.max) / 2;
@@ -112,12 +128,26 @@ export default function joystick(el, options = {}) {
     let getValues = () => {
         let xValue = x.value;
         let yValue = y.value;
+        let values = {};
 
         if (precision) {
             xValue = x.value.toFixed(precision);
             yValue = y.value.toFixed(precision);
         }
 
-        return { x: xValue, y: yValue }
+        if (round && !precision) {
+            xValue = Math.round(x.value);
+            yValue = Math.round(y.value);
+        }
+
+        if (!disableX) {
+            values.x = xValue;
+        }
+
+        if (!disableY) {
+            values.y = yValue;
+        }
+
+        return values;
     };
 }

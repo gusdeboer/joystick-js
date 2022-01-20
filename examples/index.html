@@ -1,0 +1,145 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>joystick-js</h1>
+    <div class="container" style="width: 100%; text-align: center;">
+        <div class="joystick" id="joystick-left"></div>
+
+        <div class="debug debug1">
+            <span class="x">X: 50</span>
+            <span class="y">Y: 50</span>
+        </div>
+    </div>
+
+
+    <div class="code">
+        <pre>
+import joystick from '../index.js';
+
+joystick("#joystick");
+</pre>
+    </div>
+
+    <h2>Options</h2>
+
+    <!-- MIN / MAX -->
+    <p>The min/max values default to <span class="code">min: 0</span> and <span class="code">max: 100</span>.</p>
+    <p>These values can easily be overridden by passing the parameter values to the joystick function.</p>
+    <div class="code">
+        <pre>
+joystick("#joystick", { 
+    min: 0,     // Override default min value
+    max: 100,   // Override default max value
+    minY: -50,  // Specific Y axis min value
+    maxY: 50,   // Specific Y axis max value
+    minX: -50,  // Specific X axis min value
+    maxX: 50,   // Specific X axis min value
+});
+</pre>
+    </div>
+
+    <!-- SNAP BACK -->
+    <div style="height: 60px; display: block;"></div>
+    <p>By default the joystick snaps back to its origin position. This can be disable by passing the <span class="code">snapBack</span> parameter and setting it to <span class="code">false</span>.</p>
+    <div class="code">
+        <pre>
+joystick("#joystick", { 
+    snapBack: false
+});
+</pre>
+    </div>
+    <!-- ROUND / PERCISION -->
+    <div style="height: 60px; display: block;"></div>
+    <p>By default the output values are rounded, e.g. 1.1 > 1. This can be disabled through the <span class="code">round</span> property</p>
+    <p>Provided the rounding is disabled, a <span class="code">precision</span> can be set.</p>
+    <div class="code">
+        <pre>
+joystick("#joystick", { 
+    round: false,
+    precision: 2
+});
+</pre>
+    </div>
+    <!-- DISABLE AXIS -->
+    <div style="height: 60px; display: block;"></div>
+    <p>The x and y axis can be disabled if needed.</p>
+    <p>By providing the <span class="code">disableX</span> property the stick can no longer be moved left and right.</p>
+    <div class="code">
+        <pre>
+joystick("#joystick", { 
+    disableX: true,
+    disableY: true
+});
+</pre>
+    </div>
+
+    <!-- Styling -->
+    <div style="height: 60px; display: block;"></div>
+    <h2>Styling</h2>
+    <p>The joystick can easily be styled as a HTML element. The <span class="code">span.stick</span> is added through javascript.</p>
+    <div class="code">
+        <pre>
+.joystick {
+    height: 200px;
+    width: 200px;
+    display: block;
+    border: 3px solid white;
+    margin: 50px 100px;
+    position: relative;
+    border-radius: 100%;
+    display: inline-block;
+}
+
+.joystick span.stick {
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    background: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    pointer-events: none !important;
+}
+</pre>
+    </div>
+
+    <!-- Events -->
+    <div style="height: 60px; display: block;"></div>
+    <h2>Events</h2>
+    <p>The joystick emits a custom javascript <span class="code">change</span> event which an event listener can pick up.</p>
+    <p>Native <span class="code">Event</span> classes allow a <span class="code">detail</span> property to be set.</p>
+    <div class="code">
+        <pre>
+document.getElementById("joystick").addEventListener("change", (e) => {
+    // Do something
+    console.log(e.detail)
+});
+</pre>
+    </div>
+    <footer>Built by Gus | <a href="https://github.com/gusdeboer/joystick" target="_blank">Github</a></footer>
+</body>
+
+<script type="module">
+    import joystick from '../index.js'; joystick("#joystick-left");
+</script>
+
+<script>
+    document.querySelector("#joystick-left").addEventListener("change", (e) => {
+        document.querySelector(".debug1 .x").innerHTML = `X: ${e.detail.x}`;
+        document.querySelector(".debug1 .y").innerHTML = `Y: ${e.detail.y}`;
+    });
+
+    // Prevent scrolling
+    document.body.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+    }, false);
+</script>
+
+</html>
