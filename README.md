@@ -9,14 +9,14 @@ You can find the documentation [here](https://gusdeboer.github.io/joystick-js/do
 ```npm install @gusdeboer/joystick-js```
 
 ## Basic usage
-``` 
+```js
 import joystick from '../index.js'; 
 
 joystick("#joystick");
 ```
 
 ## Options
-``` 
+```js
 import joystick from '../index.js'; 
 
 joystick("#joystick", {
@@ -35,7 +35,7 @@ joystick("#joystick", {
 ```
 
 ## Basic styling
-``` 
+```css
 .joystick {
     height: 200px;
     width: 200px;
