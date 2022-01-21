@@ -146,6 +146,12 @@ export default function joystick(el, options = {}) {
             values.y = yValue;
         }
 
+        values.x = (values.x < x.min) ? x.min : values.x;
+        values.x = (values.x > x.max) ? x.max : values.x;
+
+        values.y = (values.y < y.min) ? y.min : values.y;
+        values.y = (values.y > y.max) ? y.max : values.y;
+
         return values;
     };
 }
