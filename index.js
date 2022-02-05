@@ -73,9 +73,10 @@ export default function joystick(el, options = {}) {
 
         let offsetX;
         let offsetY;
+
         // Determine mouse or touch
         if (typeof e.touches !== 'undefined') {
-            var bcr = e.target.getBoundingClientRect();
+            let bcr = e.target.getBoundingClientRect();
             offsetX = e.targetTouches[0].clientX - bcr.x;
             offsetY = e.targetTouches[0].clientY - bcr.y;
         } else {
@@ -97,7 +98,7 @@ export default function joystick(el, options = {}) {
 
         // val = ((percentage * (max - min) / 100) + min)
         x.value = (xPercentage * (x.max - x.min)) / 100 + x.min;
-        y.value = (yPercentage * (y.max - y.min)) / 100 + y.min;
+        y.value = ((100 - yPercentage) * (y.max - y.min)) / 100 + y.min;
 
         // Dispatch input change event
         joystick.dispatchEvent(new CustomEvent("change", { detail: getValues() }));
@@ -112,7 +113,7 @@ export default function joystick(el, options = {}) {
             return;
         }
 
-        // Reset range sliders to center position
+        // Reset values to center position
         x.value = (x.min + x.max) / 2;
         y.value = (y.min + y.max) / 2;
 
