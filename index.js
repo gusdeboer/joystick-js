@@ -16,14 +16,30 @@ export default function joystick(el, options = {}) {
 
     let x = {
         min: options.minX || options.min || 0,
-        max: options.maxX || options.max || 100,
-        value: 0
+        max: options.maxX || options.max || 100
+    };
+
+    // Apply start value for x depending op option or default to middle
+    if (typeof options.startX === 'number') {
+        x.value = options.startX;
+    } else if (typeof options.start === 'number') {
+        x.value = options.start;
+    } else {
+        x.value = (x.min + x.max) / 2
     }
 
     let y = {
         min: options.minY || options.min || 0,
-        max: options.maxY || options.max || 100,
-        value: 0
+        max: options.maxY || options.max || 100
+    };
+
+    // Apply start value for y depending op option or default to middle
+    if (typeof options.startY === 'number') {
+        y.value = options.startY;
+    } else if (typeof options.start === 'number') {
+        y.value = options.start;
+    } else {
+        y.value = (y.min + y.max) / 2
     }
 
     // Validate min max
@@ -38,6 +54,8 @@ export default function joystick(el, options = {}) {
     // Create and append stick
     const stick = document.createElement("span");
     stick.classList.add("stick");
+    stick.style.left = (x.value / (x.max - x.min)) * 100 + "%";
+    stick.style.top = (100 - (y.value / (y.max - y.min)) * 100) + "%";
     joystick.appendChild(stick);
 
     // Define all listeners, for mouse and touch

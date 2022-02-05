@@ -9,7 +9,7 @@
 <body>
     <h1>joystick-js</h1>
     <div class="container" style="width: 100%; text-align: center;">
-        <div class="joystick" id="joystick-left"></div>
+        <div class="joystick" id="joystick"></div>
 
         <div class="debug debug1">
             <span class="x">X: 50</span>
@@ -141,11 +141,11 @@ document.getElementById("joystick").addEventListener("change", (e) => {
 </body>
 
 <script type="module">
-    import joystick from '../index.js'; joystick("#joystick-left");
+    import joystick from '../index.js'; joystick("#joystick");
 </script>
 
 <script>
-    document.querySelector("#joystick-left").addEventListener("change", (e) => {
+    document.querySelector("#joystick").addEventListener("change", (e) => {
         document.querySelector(".debug1 .x").innerHTML = `X: ${e.detail.x}`;
         document.querySelector(".debug1 .y").innerHTML = `Y: ${e.detail.y}`;
     });
