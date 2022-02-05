@@ -1,6 +1,6 @@
 {
     "name": "@gusdeboer/joystick-js",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Configurable javascript based joystick",
     "main": "index.js",
     "scripts": {
